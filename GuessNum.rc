@@ -1,0 +1,193 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_GUESSNUM            ICON    DISCARDABLE     "GuessNum.ICO"
+IDI_SMALL               ICON    DISCARDABLE     "SMALL.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_GUESSNUM MENU DISCARDABLE 
+BEGIN
+    POPUP "游戏"
+    BEGIN
+        MENUITEM "新建 - 人猜",                 IDM_NEW_HUMAN
+        MENUITEM "新建 - 电脑猜",               IDM_NEW_COM
+        MENUITEM SEPARATOR
+        MENUITEM "退出",                        IDM_EXIT
+    END
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "关于 ...",                    IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_GUESSNUM ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  22, 17, 230, 75
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 10, "宋体"
+BEGIN
+    ICON            IDI_GUESSNUM,IDC_MYICON,14,9,20,20
+    LTEXT           "GuessNum Version 1.0",IDC_STATIC,49,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006",IDC_STATIC,49,20,119,8
+    DEFPUSHBUTTON   "OK",IDOK,195,6,30,11,WS_GROUP
+END
+
+IDD_MAIN DIALOG DISCARDABLE  0, 0, 247, 154
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "猜数字"
+MENU IDC_GUESSNUM
+FONT 10, "宋体"
+BEGIN
+    PUSHBUTTON      "7",IDC_NUM7,10,41,23,16
+    PUSHBUTTON      "2",IDC_NUM2,40,87,23,16
+    PUSHBUTTON      "3",IDC_NUM3,70,87,23,16
+    PUSHBUTTON      "重新输入",IDC_CLEAR,10,131,83,16
+    PUSHBUTTON      "4",IDC_NUM4,10,64,23,16
+    PUSHBUTTON      "5",IDC_NUM5,40,64,23,16
+    PUSHBUTTON      "6",IDC_NUM6,70,64,23,16
+    PUSHBUTTON      "0",IDC_NUM0,40,110,23,16
+    PUSHBUTTON      "1",IDC_NUM1,10,87,23,16
+    PUSHBUTTON      "8",IDC_NUM8,40,41,23,16
+    PUSHBUTTON      "9",IDC_NUM9,70,41,23,16
+    EDITTEXT        IDC_NUMBOX,43,11,50,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_JUDGEBOX,160,11,50,12,ES_RIGHT | ES_AUTOHSCROLL
+    LISTBOX         IDC_LIST1,135,56,76,75,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "猜测",IDC_ENTERNUM,98,11,23,16
+    PUSHBUTTON      "评判",IDC_JUDGE,216,11,23,16
+    PUSHBUTTON      "A",IDC_A,10,110,23,16
+    PUSHBUTTON      "B",IDC_B,70,110,23,16
+    LTEXT           "数字：",IDC_STATIC,10,14,23,8
+    LTEXT           "判断：",IDC_STATIC,135,15,23,8
+    LTEXT           "历史：",IDC_STATIC,135,41,23,8
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 240
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_APP_TITLE           "GuessNum"
+    IDS_HELLO               "Hello World!"
+    IDC_GUESSNUM            "GUESSNUM"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
