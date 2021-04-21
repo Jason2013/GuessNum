@@ -320,7 +320,7 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 			{
 			case IDC_JUDGE:
 				{
-					TCHAR szBuf[5];
+					TCHAR szBuf[32];
 //					int num[4];
 					SendMessage(hCtl, WM_GETTEXT, (WPARAM)5, (LPARAM)szBuf);
 //					CheckJudge(szBuf);//, num);
@@ -382,7 +382,7 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 			case IDC_ENTERNUM:
 				{
 					// Mode = 0
-					TCHAR szBuf[5];
+					TCHAR szBuf[32];
 					int num[4];
 					SendMessage(hCtl, WM_GETTEXT, (WPARAM)5, (LPARAM)szBuf);
 //					CheckNum(szBuf, num);
