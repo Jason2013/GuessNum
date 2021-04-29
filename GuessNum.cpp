@@ -440,7 +440,10 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 						else if (Count == 8)
 						{
 							// 8次没猜中。
-							MessageBox(hDlg, TEXT("8次没有猜中！本局结束。祝下次好运！"), TEXT("结束"), MB_ICONINFORMATION);
+							TCHAR szBuf[64];
+							wsprintf(szBuf, TEXT("8次没有猜中！本局结束。祝下次好运！\n\n正确答案：%d%d%d%d"),
+								Answer[0], Answer[1], Answer[2], Answer[3]);
+							MessageBox(hDlg, szBuf, TEXT("结束"), MB_ICONINFORMATION);
 							GameOver ++;
 						}
 
