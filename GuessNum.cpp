@@ -48,7 +48,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 {
 	hInst = hInstance;
 	srand((unsigned)time(NULL));
-	DialogBox(hInstance, (LPCTSTR)IDD_MAIN, NULL, (DLGPROC)MainDlgProc);
+	DialogBox(hInstance, MAKEINTRESOURCE(IDD_MAIN), NULL, (DLGPROC)MainDlgProc);
 	return 0;
  	// TODO: Place code here.
 	MSG msg;
@@ -65,7 +65,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_GUESSNUM);
+	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_GUESSNUM));
 
 	// Main message loop:
 	while (GetMessage(&msg, NULL, 0, 0)) 
@@ -106,12 +106,12 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.cbClsExtra		= 0;
 	wcex.cbWndExtra		= 0;
 	wcex.hInstance		= hInstance;
-	wcex.hIcon			= LoadIcon(hInstance, (LPCTSTR)IDI_GUESSNUM);
+	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_GUESSNUM));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	wcex.lpszMenuName	= (LPCSTR)IDC_GUESSNUM;
+	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_GUESSNUM);
 	wcex.lpszClassName	= szWindowClass;
-	wcex.hIconSm		= LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
+	wcex.hIconSm		= LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
 	return RegisterClassEx(&wcex);
 }
@@ -173,10 +173,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			switch (wmId)
 			{
 				case IDM_NEW:
-				   DialogBox(hInst, (LPCTSTR)IDD_MAIN, hWnd, (DLGPROC)MainDlgProc);
+				   DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN), hWnd, (DLGPROC)MainDlgProc);
 				   break;
 				case IDM_ABOUT:
-				   DialogBox(hInst, (LPCTSTR)IDD_ABOUTBOX, hWnd, (DLGPROC)About);
+				   DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, (DLGPROC)About);
 				   break;
 				case IDM_EXIT:
 				   DestroyWindow(hWnd);
@@ -190,7 +190,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			// TODO: Add any drawing code here...
 			RECT rt;
 			GetClientRect(hWnd, &rt);
-			DrawText(hdc, szHello, strlen(szHello), &rt, DT_CENTER);
+			DrawText(hdc, szHello, _tcslen(szHello), &rt, DT_CENTER);
 			EndPaint(hWnd, &ps);
 			break;
 		case WM_DESTROY:
@@ -260,7 +260,7 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 					{
 						// 恢复原值
 						SendMessage((HWND)lParam, WM_SETTEXT, (WPARAM)0, (LPARAM)szOld);
-						PlaySound("ding.wav", 0, SND_ASYNC);
+						PlaySound(TEXT("ding.wav"), 0, SND_ASYNC);
 					}
 				}
 				return TRUE;
@@ -277,7 +277,7 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 				// 修改数字文本框内容
 				int Beg, End;
 
-				TCHAR szNum[13]="0123456789AB";
+				TCHAR szNum[13]=TEXT("0123456789AB");
 				int index = nCmd - IDC_NUM0;
 				TCHAR c[2];
 
@@ -297,7 +297,7 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 
 				if (lstrlen(szNumBuf)==4 && End == Beg)
 				{
-					PlaySound("ding.wav", 0, SND_ASYNC); 
+					PlaySound(TEXT("ding.wav"), 0, SND_ASYNC); 
 					SetFocus(hCtl);
 					return TRUE;
 				}
@@ -340,7 +340,7 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 //						Count++;// 
 						AddTemp(History, Count, TmpAns);
 
-						wsprintf(szBuf, "%d. %d%d%d%d %dA%dB", ++Count, 
+						wsprintf(szBuf, TEXT("%d. %d%d%d%d %dA%dB"), ++Count, 
 							TmpAns[0],TmpAns[1],TmpAns[2],TmpAns[3],
 							a,b);//1, 1, 1, 1, 2, 2);
 						SendMessage(GetDlgItem(hDlg, IDC_LIST1), LB_ADDSTRING, 0, (LPARAM)szBuf);
@@ -415,12 +415,12 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 					else
 					{
 						// "1. 1234 0A0B"
-						TCHAR szBuf[] = "1. 1234 0A0B";
+						TCHAR szBuf[] = TEXT("1. 1234 0A0B");
 						HWND hWnd = GetDlgItem(hDlg, IDC_LIST1);
 						int a, b;
 						compare(Answer, num, &a, &b);
 
-						wsprintf(szBuf, "%d. %d%d%d%d %dA%dB", ++Count, 
+						wsprintf(szBuf, TEXT("%d. %d%d%d%d %dA%dB"), ++Count, 
 							num[0],num[1],num[2],num[3],
 							a,b);//1, 1, 1, 1, 2, 2);
 						SendMessage(hWnd, LB_ADDSTRING, 0, (LPARAM)szBuf);
@@ -510,7 +510,7 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 				SetFocus(hCtl);
 				break;
 			case IDM_ABOUT:
-				DialogBox(hInst, (LPCTSTR)IDD_ABOUTBOX, hDlg, (DLGPROC)About);
+				DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hDlg, (DLGPROC)About);
 				return TRUE;
 			case IDM_EXIT:
 				PostMessage(hDlg, WM_COMMAND, IDOK, 0);

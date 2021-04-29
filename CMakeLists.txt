@@ -51,6 +51,11 @@ add_executable(GuessNum
     GuessNum.rc
 )
 
+target_compile_definitions(GuessNum PRIVATE
+    UNICODE
+    _UNICODE
+)
+
 target_link_options(GuessNum PRIVATE
     "/SUBSYSTEM:WINDOWS"
 )
