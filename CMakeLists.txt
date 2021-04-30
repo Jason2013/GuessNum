@@ -22,6 +22,9 @@ set(RESOURCE_FILES
     small.ico
 )
 
+# Using pre-compiled headers with CMake
+# https://stackoverflow.com/questions/148570/using-pre-compiled-headers-with-cmake/2956392#2956392
+
 MACRO(ADD_MSVC_PRECOMPILED_HEADER PrecompiledHeader PrecompiledSource SourcesVar)
   IF(MSVC)
     GET_FILENAME_COMPONENT(PrecompiledBasename ${PrecompiledHeader} NAME_WE)
