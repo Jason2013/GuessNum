@@ -324,7 +324,7 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 //					int num[4];
 					SendMessage(hCtl, WM_GETTEXT, (WPARAM)5, (LPARAM)szBuf);
 //					CheckJudge(szBuf);//, num);
-					if (! CheckJudge(szBuf))
+					if (CheckJudge(szBuf))
 					{
 						MessageBox(hDlg, TEXT("判断的形式为XAXB，其中X为0至4的数字。"), TEXT("提示"), MB_ICONSTOP);
 //						SetFocus(hCtl);
@@ -344,6 +344,14 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 							TmpAns[0],TmpAns[1],TmpAns[2],TmpAns[3],
 							a,b);//1, 1, 1, 1, 2, 2);
 						SendMessage(GetDlgItem(hDlg, IDC_LIST1), LB_ADDSTRING, 0, (LPARAM)szBuf);
+
+						if (a == 4 && b == 0)
+						{
+							// 4A0B 表示电脑猜中了玩家想的数字
+							MessageBox(hDlg, TEXT("电脑猜对了你想的4个数字！"), TEXT("提示"), MB_ICONINFORMATION);
+							DisableAll(hDlg);
+							return TRUE;
+						}
 						
 						// 电脑继续猜数字
 						if (!GenTemp(TmpAns, History, Count)) // 找不出可用的数字排列
