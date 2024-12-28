@@ -323,12 +323,18 @@ LRESULT CALLBACK MainDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 					TCHAR szBuf[32];
 //					int num[4];
 					SendMessage(hCtl, WM_GETTEXT, (WPARAM)5, (LPARAM)szBuf);
-//					CheckJudge(szBuf);//, num);
-					if (CheckJudge(szBuf))
+					int error = CheckJudge(szBuf);
+					if (error == 1)
 					{
-						MessageBox(hDlg, TEXT("判断的形式为XAXB，其中X为0至4的数字。"), TEXT("提示"), MB_ICONSTOP);
-//						SetFocus(hCtl);
-
+						MessageBox(hDlg, TEXT("判断的形式为 aAaB，其中 a, b 为 0 至 4 的数字。判断的长度为4。"), TEXT("提示"), MB_ICONSTOP);
+					}
+					else if (error == 2)
+					{
+						MessageBox(hDlg, TEXT("判断的形式为 aAaB，其中 a, b 为 0 至 4 的数字。"), TEXT("提示"), MB_ICONSTOP);
+					}
+					else if (error == 3)
+					{
+						MessageBox(hDlg, TEXT("判断的形式为 aAaB，其中 a, b 为 0 至 4 的数字，且 a+b <= 4 。"), TEXT("提示"), MB_ICONSTOP);
 					}
 					else
 					{
@@ -621,7 +627,7 @@ int CheckJudge(TCHAR * Str)
 	{
 		return 1; // 长度不正确
 	}
-	if (*(Str+1) != TCHAR('a') || *(Str+1) != TCHAR('A') || *(Str+3) != TCHAR('b') || *(Str+3) != TCHAR('B'))
+	if (*(Str+1) != TCHAR('a') && *(Str+1) != TCHAR('A') || *(Str+3) != TCHAR('b') && *(Str+3) != TCHAR('B'))
 	{
 		return 2; // 格式不正确
 	}
@@ -632,7 +638,7 @@ int CheckJudge(TCHAR * Str)
 			c = *Str;
 		else
 			c = *(Str+2);
-		if (c != TCHAR('0') || c != TCHAR('1') || c != TCHAR('2') || c != TCHAR('3') || c != TCHAR('4'))
+		if (c != TCHAR('0') && c != TCHAR('1') && c != TCHAR('2') && c != TCHAR('3') && c != TCHAR('4'))
 			return 3; // 数字不正确
 	}
 
